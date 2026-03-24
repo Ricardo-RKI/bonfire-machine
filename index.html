@@ -1,0 +1,161 @@
+<!-- Criado por Marise Miranda | 2017.1 -->
+<!-- Adaptado por Matheus Matos | 2025.1 -->
+
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href="style.css">
+    <title>Bonfire's Machine</title>
+    
+</head>
+
+<body>
+  <div class="fundo"> </div>
+  
+    <div class = 'titulo'>
+        <h1> <stong> Bonfire's Machine </stong></h1>
+<p> <strong>Descanse ao redor da fogueira e calcule um pouco... </strong> </p>
+</div>
+<div class="caixa_creditos"> 
+  <aside class = "creditos"> 
+    <h2> Créditos </h2>
+    <p> Criado por Marise Miranda 2017.1 </p> <br>
+    <p> Adaptado por Matheus Matos 2025.1</p> <br>
+    <p> Personalizado por Ricardo Kazuo Inoue 1CCOB 2026.1</p> <br> 
+    <img src="img/darksouls.gif"> 
+  </aside>
+  </div>
+<main>
+
+    <div id = "calculos">
+        <h3>Digite um número decimal:</h3>
+        
+        <input id="demo1" type="text" placeholder="Ex: 42">
+        <br>
+
+        <button onclick="converter()">Converter</button>
+
+        <h3>Resultados:</h3>
+        <p>Octal:
+        <div id="demo2"></div>
+        </p>
+        <p>Hexadecimal:
+        <div id="demo3"></div>
+        </p>
+        <p>Binário:
+        <div id="demo4"></div>
+        </p>
+    
+</div>  
+<div id = 'calculos'>
+        <h4> 
+            Calculadora de Potências
+        </h4>
+        <p> Insira a Base (Apenas Positiva): </p>
+        <input type="text" id="ipt_potencia">
+
+        <p> Insira um expoente positivo (Até no Máximo 63): </p>
+        <input type="text" id="ipt_expoente">
+        <br> <br>
+
+        <button onclick = 'calcular()'> Calcular </button>
+
+        <p> 
+            Resultado: 
+            <div id = 'resultado'> </div>
+        </p>
+</div>
+<div id = 'calculos'> 
+        <p> Digite um número binário: </p>
+        <input type="text" id="ipt_binario">
+        <p> Resultado: 
+            <div id="div_decimal"> </div>
+        </p>
+        <br> <br> 
+         
+        <button onclick = 'decimal()'> Transforme em Decimal</button>
+    </div>
+
+ 
+
+</main>
+
+</body>
+    <script>
+    let contador = 0;
+        function converter() {
+            var decimal = Number(demo1.value);
+
+            demo2.innerHTML = decimal.toString(8);
+            demo3.innerHTML = decimal.toString(16);
+            demo4.innerHTML = decimal.toString(2);
+        }
+
+        function calcular() {
+// Pegar Base e Expoente
+            let base = Number(ipt_potencia.value);
+            let expoente = Number(ipt_expoente.value);
+          
+// Validar Input do expoente
+            if (base === '' || expoente === '') {
+                alert('Por favor Insira algum valor!')
+            }
+            if (expoente > 63 || expoente < 0 ) {
+                alert('Expoente inválido! Coloque um Expoente Válido Por Favor')
+                return;
+            }
+
+            resultado.innerHTML = '';
+            let expoente_zero = `${base}^0 = 1`
+            resultado.innerHTML = expoente_zero + '<br>';
+
+            let expoente_um = `${base}^1 = ${base}`
+            resultado.innerHTML += expoente_um + '<br>';
+
+   // Calcular Potências
+           while (contador <= expoente) {
+
+              let potencia = base ** contador;
+              contador++
+              resultado.innerHTML += `${base}^${contador} = ${potencia} <br> `; 
+              console.log(potencia);
+           }
+        }
+    // Conversor de Binário para decimal
+        function decimal() {
+            let binario = ipt_binario.value;
+            let posicao_binario = binario.length - 1;
+            let numero_decimal = 0;
+            let elevado = 0; 
+
+  // Validações
+    if (binario === "") {
+            alert("Por favor Digite um número binário!");
+           
+        }
+  // Regex
+        if (!/^[01]+$/.test(binario)) {
+            alert("Por favor Digite apenas 0 e 1!");
+           return;
+        }
+         
+  // Calculo
+        while (posicao_binario >= 0) {
+            let algarismo = Number(binario[posicao_binario]);
+
+            numero_decimal += algarismo *(2 ** elevado)
+
+            elevado++;
+            posicao_binario--;
+        }
+
+        div_decimal.innerHTML = `${numero_decimal}`;
+
+        }
+    </script>
+
+
+</html>
