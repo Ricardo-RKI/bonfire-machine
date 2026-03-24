@@ -85,7 +85,7 @@
 
 </body>
     <script>
-    let contador = 0;
+    let contador = 2;
         function converter() {
             var decimal = Number(demo1.value);
 
@@ -109,18 +109,21 @@
             }
 
             resultado.innerHTML = '';
-            let expoente_zero = `${base}^0 = 1`
-            resultado.innerHTML = expoente_zero + '<br>';
-
-            let expoente_um = `${base}^1 = ${base}`
-            resultado.innerHTML += expoente_um + '<br>';
+    
+if (expoente == 0) {
+    resultado.innerHTML = `${base}^0 = 1<br>`;
+}
+if (expoente >= 1) {
+    resultado.innerHTML = `${base}^0 = 1<br>`;
+    resultado.innerHTML += `${base}^1 = ${base}<br>`;
+}
 
    // Calcular Potências
            while (contador <= expoente) {
 
               let potencia = base ** contador;
-              contador++
               resultado.innerHTML += `${base}^${contador} = ${potencia} <br> `; 
+              contador++
               console.log(potencia);
            }
         }
